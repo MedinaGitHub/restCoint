@@ -1,17 +1,22 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-
+import { connect } from "react-redux";
 import ComponentQr from './ComponentQr';
 
-export default class ContainerHome extends React.Component {
+class ContainerHome extends React.Component {
 
 
   constructor(props) {
-
-
     super(props);
+    console.log(this.props)
+    var valor = '0';
+    if (this.props.status.main.value !== undefined) {
+      valor = (parseInt(valor) + parseInt(this.props.status.main.value))
+    }
+
+
     this.state = {
-      value: '0',
+      value: valor,
       amount: '0'
     };
     console.log(this.props)
@@ -49,7 +54,7 @@ export default class ContainerHome extends React.Component {
       <View style={styles.container}>
 
         <Button onPress={() => this.openCamera()}
-          title="CAMARA"
+          title="COMPRAR"
           color="#841584"
         />
 
@@ -66,6 +71,22 @@ export default class ContainerHome extends React.Component {
     );
   }
 }
+
+
+const mapStateToProps = (state, props) => {
+  return { status: state };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+
+  };
+};
+
+const AppScreen = connect(mapStateToProps, mapDispatchToProps)(ContainerHome);
+
+
+export default AppScreen;
 
 const styles = StyleSheet.create({
   container: {

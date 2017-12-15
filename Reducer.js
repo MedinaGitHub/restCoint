@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 //formReducer es la funcion que toma el estado anterior del formulario y lo actualiza.
 function mainReducer(
   state = {
-    value: {}
+    value: '0'
   },
   action
 ) {
